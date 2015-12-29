@@ -1,0 +1,30 @@
+﻿<h2>Products <small>all the available ones</small></h2>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th ng-show="vm.isAuthenticated"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="4"
+                ng-show="vm.isLoadingProducts"
+                style="text-align: center;">
+                Loading...
+            </td>
+        </tr>
+        <tr ng-repeat="product in vm.products" ng-hide="vm.isLoadingProducts">
+            <td>{{product.Name}}</td>
+            <td>{{product.Category.Name}}</td>
+            <td>{{product.Price}}</td>
+            <td ng-show="vm.isAuthenticated">
+                <a class="btn btn-xs btn-primary" ng-href="#/products/edit/{{product.Id}}"><span class="glyphicon glyphicon-edit"></span></a>
+                <button class="btn btn-xs btn-danger" ng-click="vm.deleteProduct(product.Id)"><span class="glyphicon glyphicon-remove"></span></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-primary" ng-href="#/products/new" ng-show="vm.isAuthenticated">Add new product</a>
