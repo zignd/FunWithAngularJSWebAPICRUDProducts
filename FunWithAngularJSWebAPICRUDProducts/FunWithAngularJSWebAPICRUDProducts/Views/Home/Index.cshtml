@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="app">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body ng-controller="RootController as vm" ng-cloak>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ng-href="#/">Fun</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a ng-href="#/">Home Page</a></li>
+                    <li><a ng-href="#/categories">Categories</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-show="vm.isAuthenticated">
+                    <li><a>{{vm.username}}</a></li>
+                    <li><a ng-click="vm.signOut()">Sign Out</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" ng-hide="vm.isAuthenticated">
+                    <li><a ng-href="#/signup">Sign Up</a></li>
+                    <li><a ng-href="#/signin">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        <div ng-view></div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Fun</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/vendors")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>
